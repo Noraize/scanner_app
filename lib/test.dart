@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scanner_app/appbar.dart';
 import 'package:scanner_app/firebaselogin.dart';
 import 'package:scanner_app/hello.dart';
 
-final emailController = TextEditingController(),
-    passwordController = TextEditingController();
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
 
 class loginscreen extends StatelessWidget {
   const loginscreen({super.key});
@@ -12,13 +13,7 @@ class loginscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'QR Code Scanner - FastDev',
-          ),
-          backgroundColor: Colors.orange,
-          foregroundColor: Colors.black,
-        ),
+        appBar: myAppBar(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
