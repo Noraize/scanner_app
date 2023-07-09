@@ -18,11 +18,7 @@ class Hello extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Login"),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("Login"),
-              )
+              Text("Signed In!"),
             ],
           ),
         ),

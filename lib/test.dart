@@ -29,6 +29,7 @@ class loginscreen extends StatelessWidget {
               ),
               TextField(
                 controller: passwordController,
+                obscureText: true,
               ),
               ElevatedButton(
                 onPressed: () {
