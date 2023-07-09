@@ -14,10 +14,12 @@ Future<void> login(String Email, String Password, BuildContext context) async {
           builder: (context) => Hello(),
         ));
   } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password') {
-      debugPrint('The password provided is too weak.');
-    } else if (e.code == 'email-already-in-use') {
-      debugPrint('The account already exists for that email.');
+    if (e.code == 'wrong-password') {
+      debugPrint('Wrong Password');
+    } else if (e.code == 'user-not-found') {
+      debugPrint('The account does not exist.');
+    } else if (e.code == 'invalid-email') {
+      debugPrint('Wrong email');
     }
   } catch (e) {}
 }
