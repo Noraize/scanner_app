@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
 import 'package:scanner_app/firebaselogin.dart';
-import 'package:scanner_app/hello.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();

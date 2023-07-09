@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
+import 'package:scanner_app/scanner.dart';
 
 class Hello extends StatelessWidget {
   const Hello({super.key});
@@ -14,6 +15,16 @@ class Hello extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Signed In!"),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ScanQrPage(),
+                      ));
+                },
+                child: Text("QR"),
+              ),
             ],
           ),
         ),
