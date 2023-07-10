@@ -9,7 +9,7 @@ class Hello extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: myAppBar(),
+        appBar: NewAppBar(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
