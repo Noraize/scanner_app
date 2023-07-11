@@ -37,7 +37,6 @@ dependencies:
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
   qr_code_scanner: ^1.0.1
-  google_mobile_ads: ^3.0.0
 
 dev_dependencies:
   flutter_test:

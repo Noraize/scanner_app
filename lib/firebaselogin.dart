@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:scanner_app/homepage.dart';
+import 'package:scanner_app/hello.dart';
 
 Future<void> login(String Email, String Password, BuildContext context) async {
   try {
@@ -11,7 +11,7 @@ Future<void> login(String Email, String Password, BuildContext context) async {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => homepage(),
+          builder: (context) => Hello(),
         ));
   } on FirebaseAuthException catch (e) {
     if (e.code == 'wrong-password') {
