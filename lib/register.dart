@@ -30,15 +30,17 @@ class Registration extends StatelessWidget {
                 const Text(
                   "SIGN UP",
                   style: TextStyle(
-                      color: Color(0xfffd7e14),
-                      fontFamily: 'LEMONMILK-Regular',
-                      fontSize: 40,
-                      shadows: <Shadow>[
-                        Shadow(
-                            color: Color.fromARGB(255, 186, 185, 184),
-                            blurRadius: 0.5,
-                            offset: Offset(4, 4)),
-                      ]),
+                    color: Color(0xfffd7e14),
+                    fontFamily: 'LEMONMILK-Regular',
+                    fontSize: 40,
+                    shadows: <Shadow>[
+                      Shadow(
+                        color: Color.fromARGB(255, 186, 185, 184),
+                        blurRadius: 2,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 50,
