@@ -24,7 +24,7 @@ class loginscreen extends StatelessWidget {
                   children: [
                     Container(
                       color: const Color(0xfffd7e14),
-                      height: MediaQuery.of(context).size.width / 2,
+                      height: MediaQuery.of(context).size.width / 1.25,
                     ),
                   ],
                 ),
