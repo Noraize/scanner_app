@@ -26,11 +26,6 @@ class loginscreen extends StatelessWidget {
                       color: const Color(0xfffd7e14),
                       height: MediaQuery.of(context).size.width / 2,
                     ),
-                    // const Image(
-                    //   width: 500,
-                    //   height: 300,
-                    //   image: AssetImage('assets/img/logo.png'),
-                    // ),
                   ],
                 ),
                 const SizedBox(
@@ -44,9 +39,10 @@ class loginscreen extends StatelessWidget {
                     fontSize: 40,
                     shadows: <Shadow>[
                       Shadow(
-                          color: Color.fromARGB(255, 186, 185, 184),
-                          blurRadius: 0.5,
-                          offset: Offset(4, 4)),
+                        color: Color.fromARGB(255, 186, 185, 184),
+                        blurRadius: 2,
+                        offset: Offset(2, 2),
+                      ),
                     ],
                   ),
                 ),
@@ -139,8 +135,12 @@ class loginscreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Regisration()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Registration(),
+                      ),
+                    );
                   },
                   child: const Text(
                     "New here? Sign up",

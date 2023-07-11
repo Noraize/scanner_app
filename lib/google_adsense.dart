@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 late BannerAd bannerAd;
-bool isAdLoaded = false;
 
-initBannarAd() {
+initBannarAd(bool isAdLoaded) {
   bannerAd = BannerAd(
     size: AdSize.banner,
     adUnitId: "ca-app-pub-3940256099942544/6300978111",
     listener: BannerAdListener(
       onAdLoaded: (ad) {
         isAdLoaded = true;
-        debugPrint("No Error" + isAdLoaded.toString());
+        debugPrint("No Error");
       },
       onAdFailedToLoad: (ad, error) {
         ad.dispose();

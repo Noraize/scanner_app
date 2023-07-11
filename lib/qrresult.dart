@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
+import 'package:scanner_app/scanner.dart';
 
-class Hello extends StatelessWidget {
-  const Hello({super.key});
+class qrResult extends StatelessWidget {
+  final String? qrData;
+  const qrResult({super.key, required this.qrData});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class Hello extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Signed In!"),
+              Text(qrData!),
             ],
           ),
         ),

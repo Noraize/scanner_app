@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:scanner_app/homepage.dart';
+import 'package:scanner_app/qrresult.dart';
 
 class ScanQrPage extends StatefulWidget {
   const ScanQrPage({super.key});
@@ -30,6 +32,14 @@ class _ScanQrPageState extends State<ScanQrPage> {
     if (result != null) {
       controller!.pauseCamera();
       debugPrint(result!.code);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => qrResult(
+            qrData: result!.code,
+          ),
+        ),
+      );
       controller!.dispose();
     }
   }
