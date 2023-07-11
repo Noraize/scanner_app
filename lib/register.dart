@@ -50,18 +50,21 @@ class Regisration extends StatelessWidget {
                     decoration: const InputDecoration(
                       hintText: "Username",
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Color(0xfffd7e14),
-                        width: 0.5,
-                      )),
+                        borderSide: BorderSide(
+                          color: Color(0xfffd7e14),
+                          width: 0.5,
+                        ),
+                      ),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xfffd7e14),
-                            width: 0.5,
-                          ),
-                          borderRadius: BorderRadius.horizontal(
-                              left: Radius.circular(20),
-                              right: Radius.circular(20))),
+                        borderSide: BorderSide(
+                          color: Color(0xfffd7e14),
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(20),
+                          right: Radius.circular(20),
+                        ),
+                      ),
                     ),
                     controller: regNameController,
                   ),
@@ -81,13 +84,15 @@ class Regisration extends StatelessWidget {
                         width: 0.5,
                       )),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xfffd7e14),
-                            width: 0.5,
-                          ),
-                          borderRadius: BorderRadius.horizontal(
-                              left: Radius.circular(20),
-                              right: Radius.circular(20))),
+                        borderSide: BorderSide(
+                          color: Color(0xfffd7e14),
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(20),
+                          right: Radius.circular(20),
+                        ),
+                      ),
                     ),
                     //controller: emailController,
                   ),
@@ -102,18 +107,21 @@ class Regisration extends StatelessWidget {
                     decoration: const InputDecoration(
                       hintText: "Password",
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Color(0xfffd7e14),
-                        width: 0.5,
-                      )),
+                        borderSide: BorderSide(
+                          color: Color(0xfffd7e14),
+                          width: 0.5,
+                        ),
+                      ),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xfffd7e14),
-                            width: 0.5,
-                          ),
-                          borderRadius: BorderRadius.horizontal(
-                              left: Radius.circular(20),
-                              right: Radius.circular(20))),
+                        borderSide: BorderSide(
+                          color: Color(0xfffd7e14),
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(20),
+                          right: Radius.circular(20),
+                        ),
+                      ),
                     ),
                     controller: regPassController,
                     obscureText: true,
@@ -133,13 +141,15 @@ class Regisration extends StatelessWidget {
                         fontSize: 20),
                     fixedSize: const Size(150, 50),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                   onPressed: () {
-                    Register().signup(
-                        regEmailController.text.trim(),
-                        regPassController.text.trim(),
-                        regNameController.text.trim());
+                    signup(
+                      regEmailController.text.trim(),
+                      regPassController.text.trim(),
+                      regNameController.text.trim(),
+                    );
                   },
                   child: const Text("Sign Up"),
                 )
