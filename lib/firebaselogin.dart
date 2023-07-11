@@ -11,7 +11,7 @@ Future<void> login(String Email, String Password, BuildContext context) async {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Hello(),
+          builder: (context) => const Hello(),
         ));
   } on FirebaseAuthException catch (e) {
     if (e.code == 'wrong-password') {
@@ -21,5 +21,5 @@ Future<void> login(String Email, String Password, BuildContext context) async {
     } else if (e.code == 'invalid-email') {
       debugPrint('Wrong email');
     }
-  } catch (e) {}
+  }
 }

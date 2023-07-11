@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
 import 'package:scanner_app/firebaselogin.dart';
+import 'package:scanner_app/register.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -22,13 +23,13 @@ class loginscreen extends StatelessWidget {
                 child: Stack(children: [
                   Container(
                     color: const Color(0xfffd7e14),
-                    height: MediaQuery.of(context).size.width / 1.5,
+                    height: MediaQuery.of(context).size.width / 2,
                   ),
-                  Image(
-                    width: 500,
-                    height: 300,
-                    image: AssetImage('assets/img/logo.png'),
-                  ),
+                  // const Image(
+                  //   width: 500,
+                  //   height: 300,
+                  //   image: AssetImage('assets/img/logo.png'),
+                  // ),
                 ]),
               ),
               const SizedBox(
@@ -105,14 +106,14 @@ class loginscreen extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shadowColor: Color(0xfffd7e14),
-                  backgroundColor: Color(0xfffd7e14),
+                  shadowColor: const Color(0xfffd7e14),
+                  backgroundColor: const Color(0xfffd7e14),
                   foregroundColor: Colors.white,
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'LEMONMILK-Regular',
                       fontSize: 20),
-                  fixedSize: Size(100, 50),
+                  fixedSize: const Size(100, 50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
@@ -123,7 +124,23 @@ class loginscreen extends StatelessWidget {
                     context,
                   );
                 },
-                child: Text("Login"),
+                child: const Text("Login"),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Regisration()));
+                },
+                child: const Text(
+                  "New here? Sign up",
+                  style: TextStyle(
+                    fontFamily: 'LEMONMILK-Regular',
+                    color: Color(0xfffd7e14),
+                  ),
+                ),
               )
             ],
           ),
