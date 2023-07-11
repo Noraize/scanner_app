@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
 import 'package:scanner_app/firebaselogin.dart';
-import 'package:scanner_app/register.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -13,6 +12,7 @@ class loginscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        //resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: NewAppBar(),
         body: Center(
@@ -23,13 +23,13 @@ class loginscreen extends StatelessWidget {
                 child: Stack(children: [
                   Container(
                     color: const Color(0xfffd7e14),
-                    height: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.width / 1.5,
                   ),
-                  // const Image(
-                  //   width: 500,
-                  //   height: 300,
-                  //   image: AssetImage('assets/img/logo.png'),
-                  // ),
+                  Image(
+                    width: 500,
+                    height: 300,
+                    image: AssetImage('assets/img/logo.png'),
+                  ),
                 ]),
               ),
               const SizedBox(
@@ -38,15 +38,17 @@ class loginscreen extends StatelessWidget {
               const Text(
                 "LOGIN",
                 style: TextStyle(
-                    color: Color(0xfffd7e14),
-                    fontFamily: 'LEMONMILK-Regular',
-                    fontSize: 40,
-                    shadows: <Shadow>[
-                      Shadow(
-                          color: Color.fromARGB(255, 186, 185, 184),
-                          blurRadius: 0.5,
-                          offset: Offset(4, 4)),
-                    ]),
+                  color: Color(0xfffd7e14),
+                  fontFamily: 'LEMONMILK-Regular',
+                  fontSize: 40,
+                  shadows: <Shadow>[
+                    Shadow(
+                      color: Color.fromARGB(255, 186, 185, 184),
+                      blurRadius: 0.5,
+                      offset: Offset(4, 4),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 50,
@@ -58,18 +60,21 @@ class loginscreen extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: "Email Address",
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Color(0xfffd7e14),
-                      width: 0.5,
-                    )),
+                      borderSide: BorderSide(
+                        color: Color(0xfffd7e14),
+                        width: 0.5,
+                      ),
+                    ),
                     border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xfffd7e14),
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(20),
-                            right: Radius.circular(20))),
+                      borderSide: BorderSide(
+                        color: Color(0xfffd7e14),
+                        width: 0.5,
+                      ),
+                      borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(20),
+                        right: Radius.circular(20),
+                      ),
+                    ),
                   ),
                   controller: emailController,
                 ),
@@ -84,10 +89,11 @@ class loginscreen extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: "Password",
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Color(0xfffd7e14),
-                      width: 0.5,
-                    )),
+                      borderSide: BorderSide(
+                        color: Color(0xfffd7e14),
+                        width: 0.5,
+                      ),
+                    ),
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0xfffd7e14),
@@ -106,14 +112,14 @@ class loginscreen extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shadowColor: const Color(0xfffd7e14),
-                  backgroundColor: const Color(0xfffd7e14),
+                  shadowColor: Color(0xfffd7e14),
+                  backgroundColor: Color(0xfffd7e14),
                   foregroundColor: Colors.white,
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Colors.white,
                       fontFamily: 'LEMONMILK-Regular',
                       fontSize: 20),
-                  fixedSize: const Size(100, 50),
+                  fixedSize: Size(100, 50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
@@ -124,23 +130,7 @@ class loginscreen extends StatelessWidget {
                     context,
                   );
                 },
-                child: const Text("Login"),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Regisration()));
-                },
-                child: const Text(
-                  "New here? Sign up",
-                  style: TextStyle(
-                    fontFamily: 'LEMONMILK-Regular',
-                    color: Color(0xfffd7e14),
-                  ),
-                ),
+                child: Text("Login"),
               )
             ],
           ),
