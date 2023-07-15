@@ -34,10 +34,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.14.0
-  firebase_auth: ^4.6.3
   qr_code_scanner: ^1.0.1
   google_mobile_ads: ^3.0.0
+  url_launcher: ^6.1.11
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -58,14 +58,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
-  fonts:
-    - family: Lemon Milk
-      fonts:
-        - asset: assets/fonts/LEMONMILK-Regular.otf
-    - family: Chedros
-      fonts:
-        - asset: assets/Fonts/CHEDROS-Regular.ttf
+
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/img/festifyer.png

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
-import 'package:scanner_app/firebaselogin.dart';
-import 'package:scanner_app/register.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'launchRegisterPage.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -13,144 +14,112 @@ class loginscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white,
         appBar: NewAppBar(),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      color: const Color(0xfffd7e14),
-                      height: MediaQuery.of(context).size.width / 1.25,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Text(
-                  "LOGIN",
-                  style: TextStyle(
-                    color: Color(0xfffd7e14),
-                    fontFamily: 'LEMONMILK-Regular',
-                    fontSize: 40,
-                    shadows: <Shadow>[
-                      Shadow(
-                        color: Color.fromARGB(255, 186, 185, 184),
-                        blurRadius: 2,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: TextField(
-                    autofocus: true,
-                    decoration: const InputDecoration(
-                      hintText: "Email Address",
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Color(0xfffd7e14),
-                        width: 0.5,
-                      )),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xfffd7e14),
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(20),
-                          right: Radius.circular(20),
-                        ),
-                      ),
-                    ),
-                    controller: emailController,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: TextField(
-                    autofocus: true,
-                    decoration: const InputDecoration(
-                      hintText: "Password",
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xfffd7e14),
-                          width: 0.5,
-                        ),
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xfffd7e14),
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(20),
-                          right: Radius.circular(20),
-                        ),
-                      ),
-                    ),
-                    controller: passwordController,
-                    obscureText: true,
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: const Color(0xfffd7e14),
-                    backgroundColor: const Color(0xfffd7e14),
-                    foregroundColor: Colors.white,
-                    textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'LEMONMILK-Regular',
-                        fontSize: 20),
-                    fixedSize: const Size(100, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  onPressed: () {
-                    login(
-                      emailController.text.toString().trim(),
-                      passwordController.text.toString().trim(),
-                      context,
-                    );
-                  },
-                  child: const Text("Login"),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Registration(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "New here? Sign up",
-                    style: TextStyle(
-                      fontFamily: 'LEMONMILK-Regular',
-                      color: Color(0xfffd7e14),
-                    ),
-                  ),
-                )
+        body: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color.fromARGB(189, 255, 135, 36),
+                Color.fromARGB(255, 252, 101, 101),
               ],
+            ),
+          ),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Login',
+                    style: GoogleFonts.getFont('Raleway',
+                        textStyle: Theme.of(context).textTheme.displayLarge,
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: TextField(
+                      autofocus: true,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.zero,
+                        filled: true,
+                        fillColor: Color.fromARGB(255, 255, 217, 179),
+                        hintText: "Email Address",
+                        prefix: Icon(Icons.person),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xfffd7e14),
+                          ),
+                        ),
+                      ),
+                      controller: emailController,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: TextField(
+                      obscureText: true,
+                      autofocus: true,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.zero,
+                        filled: true,
+                        fillColor: Color.fromARGB(255, 255, 217, 179),
+                        hintText: "Password",
+                        prefix: Icon(Icons.lock),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xfffd7e14),
+                          ),
+                        ),
+                      ),
+                      controller: passwordController,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Color.fromARGB(172, 255, 255, 255),
+                      fixedSize: const Size(100, 50),
+                      textStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    onPressed: () {
+                      // Code To Check Against SQL Database
+                    },
+                    child: const Text("Login"),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      launchURLApp();
+                    },
+                    child: const Text(
+                      "New here? Sign up!",
+                      style: TextStyle(
+                        fontFamily: 'LEMONMILK-Regular',
+                        color: Colors.black,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

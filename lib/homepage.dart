@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:scanner_app/appbar.dart';
-import 'package:scanner_app/firebaselogin.dart';
 import 'package:scanner_app/google_adsense.dart';
 import 'package:scanner_app/login.dart';
 import 'package:scanner_app/scanner.dart';
@@ -75,7 +74,7 @@ class _homepageState extends State<homepage> {
                   ),
                 ),
                 onPressed: () async {
-                  signOut();
+                  //Code To Sign Out From SQL
                   Navigator.pop(
                     context,
                     loginscreen(),
