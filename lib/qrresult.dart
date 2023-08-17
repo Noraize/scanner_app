@@ -1,5 +1,7 @@
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
+import 'package:scanner_app/checkin.dart';
 
 class qrResult extends StatelessWidget {
   final String? qrData;
@@ -7,18 +9,18 @@ class qrResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var auth = checkin(uuidextract());
+
     return MaterialApp(
       home: Scaffold(
         appBar: NewAppBar(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(qrData!),
-            ],
-          ),
-        ),
       ),
     );
+  }
+
+  String? uuidextract() {
+    const substringToRemove = 'https://festifyer.com/checkin/';
+    final resultString = qrData?.replaceAll(substringToRemove, '');
+    return resultString;
   }
 }

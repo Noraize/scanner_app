@@ -9,7 +9,7 @@ class authenticateusingapi {
   static bool loginsuccess = false;
   authenticateusingapi(this.username, this.password);
   Future<void> authenticateLogin(String username, String password) async {
-    final apiUrl = 'https://festifyer.com/api/login';
+    const apiUrl = 'https://festifyer.com/api/login';
 
     final response = await http.post(
       Uri.parse(apiUrl),
@@ -26,6 +26,7 @@ class authenticateusingapi {
       final token = jsonData['token'] as String;
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('auth_token', token);
+
       debugPrint('Token stored: $token');
       loginsuccess = true;
     } else if (response.statusCode == 400) {
