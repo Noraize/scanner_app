@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scanner_app/homepage.dart';
+import 'package:scanner_app/loginapi.dart';
 
 import 'launchRegisterPage.dart';
 
@@ -16,7 +18,7 @@ class loginscreen extends StatelessWidget {
       home: Scaffold(
         appBar: NewAppBar(),
         body: DecoratedBox(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomLeft,
@@ -89,17 +91,30 @@ class loginscreen extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
-                      backgroundColor: Color.fromARGB(172, 255, 255, 255),
+                      backgroundColor: const Color.fromARGB(172, 255, 255, 255),
                       fixedSize: const Size(100, 50),
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         color: Colors.black,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    onPressed: () {
-                      // Code To Check Against SQL Database
+                    onPressed: () async {
+                      var auth = authenticateusingapi(
+                        emailController.text,
+                        passwordController.text,
+                      );
+                      await auth.authenticateLogin(
+                          auth.username, auth.password);
+                      if (authenticateusingapi.loginsuccess) {
+                        Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => homepage(),
+                          ),
+                        );
+                      }
                     },
                     child: const Text("Login"),
                   ),

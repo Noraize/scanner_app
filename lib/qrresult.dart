@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scanner_app/appbar.dart';
-import 'package:scanner_app/scanner.dart';
 
 class qrResult extends StatelessWidget {
   final String? qrData;

@@ -1,4 +1,3 @@
-import 'package:scanner_app/homepage.dart';
 import 'package:scanner_app/login.dart';
 import 'package:flutter/material.dart';
 
@@ -17,15 +16,16 @@ class _SplashState extends State<Splash> {
   }
 
   navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 2500), () {});
+    await Future.delayed(const Duration(milliseconds: 2500), () {});
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => loginscreen(),
+        builder: (context) => const loginscreen(),
       ),
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(

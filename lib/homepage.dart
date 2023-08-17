@@ -16,6 +16,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  @override
   void initState() {
     super.initState();
     setState(
@@ -53,11 +54,11 @@ class _homepageState extends State<homepage> {
                   data = await Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ScanQrPage(),
+                      builder: (context) => const ScanQrPage(),
                     ),
                   );
                 },
-                child: Text("QR Code Scanner"),
+                child: const Text("QR Code Scanner"),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -77,10 +78,10 @@ class _homepageState extends State<homepage> {
                   //Code To Sign Out From SQL
                   Navigator.pop(
                     context,
-                    loginscreen(),
+                    const loginscreen(),
                   );
                 },
-                child: Text("Logout"),
+                child: const Text("Logout"),
               ),
             ],
           ),
