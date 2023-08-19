@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  animated_cross:
+    dependency: "direct main"
+    description:
+      name: animated_cross
+      sha256: "81d4bb01d230cf958e41944e5426a036c6593df9aa79c1896ad1c03406f8f43d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   async:
     dependency: transitive
     description:
