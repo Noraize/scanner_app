@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:scanner_app/homepage.dart';
 import 'package:scanner_app/splashscreen.dart';
 
 void main() {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: homepage(),
+      home: Splash(),
       debugShowCheckedModeBanner: false,
     );
   }
