@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.scanner_app">
+    package="com.fastdevlabs.festifyerscanner">
    <application
         android:label="scanner_app"
         android:name="${applicationName}"

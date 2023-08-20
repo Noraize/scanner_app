@@ -44,6 +44,7 @@ dependencies:
   audioplayers: ^5.1.0
   animated_cross: ^1.0.0
   percent_indicator: ^4.2.3
+  change_app_package_name: ^1.1.0
 
 dev_dependencies:
   flutter_test:

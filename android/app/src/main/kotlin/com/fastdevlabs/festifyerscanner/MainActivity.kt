@@ -1,4 +1,4 @@
-package com.example.scanner_app
+package com.fastdevlabs.festifyerscanner
 
 import io.flutter.embedding.android.FlutterActivity
 
