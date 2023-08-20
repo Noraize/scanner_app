@@ -1,9 +1,11 @@
 import 'package:animated_cross/animated_cross.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scanner_app/appbar.dart';
 import 'package:scanner_app/checkin.dart';
 import 'package:animated_check/animated_check.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'scanner.dart';
 
 String data = "";
@@ -24,6 +26,14 @@ class _qrResultState extends State<qrResult>
   @override
   void initState() {
     super.initState();
+    Future.delayed(const Duration(milliseconds: 6000), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ScanQrPage(),
+        ),
+      );
+    });
     player.play(AssetSource("sounds/tick.mp3"));
     _animationController = AnimationController(
       vsync: this,
@@ -41,59 +51,69 @@ class _qrResultState extends State<qrResult>
     return MaterialApp(
       home: Scaffold(
         appBar: NewAppBar(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (val == 200) ...[
-                Column(
-                  children: [
-                    AnimatedCheck(
-                      progress: _animation,
-                      size: 200,
-                      color: const Color(0xfffd7e14),
-                    ),
-                    const Text("Joined Successfully!"),
-                  ],
-                ),
-              ] else ...[
-                Column(
-                  children: [
-                    AnimatedCross(
-                      progress: _animation,
-                      size: 200,
-                      color: Color.fromARGB(255, 255, 0, 0),
-                    ),
-                    const Text("Please Try Again!"),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shadowColor: const Color(0xfffd7e14),
-                        backgroundColor: const Color(0xfffd7e14),
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'LEMONMILK-Regular',
-                            fontSize: 20),
-                        fixedSize: const Size(200, 40),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+        body: Column(
+          children: [
+            LinearPercentIndicator(
+              animation: true,
+              progressColor: const Color(0xfffd7e14),
+              backgroundColor: const Color.fromARGB(90, 253, 125, 20),
+              percent: 1,
+              animationDuration: 6000,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (val == 200) ...[
+                    Column(
+                      children: [
+                        AnimatedCheck(
+                          progress: _animation,
+                          size: 200,
+                          color: const Color(0xfffd7e14),
                         ),
-                      ),
-                      onPressed: () async {
-                        data = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ScanQrPage(),
+                        Text(
+                          'Event Joined Successfully!',
+                          style: GoogleFonts.getFont(
+                            'Raleway',
+                            textStyle:
+                                Theme.of(context).textTheme.displayMedium,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xfffd7e14),
                           ),
-                        );
-                      },
-                      child: const Text("QR Code Scanner"),
+                        ),
+                      ],
+                    ),
+                  ] else ...[
+                    Column(
+                      children: [
+                        AnimatedCross(
+                          progress: _animation,
+                          size: 200,
+                          color: const Color.fromARGB(255, 255, 0, 0),
+                        ),
+                        Text(
+                          'Event Join Failure!',
+                          style: GoogleFonts.getFont(
+                            'Raleway',
+                            textStyle:
+                                Theme.of(context).textTheme.displayMedium,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 255, 0, 0),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                )
-              ]
-            ],
-          ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

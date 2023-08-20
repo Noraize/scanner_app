@@ -43,6 +43,7 @@ dependencies:
   animated_check: ^1.0.5
   audioplayers: ^5.1.0
   animated_cross: ^1.0.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

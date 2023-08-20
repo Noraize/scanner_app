@@ -31,15 +31,19 @@ class _ScanQrPageState extends State<ScanQrPage> {
     if (result != null) {
       controller!.pauseCamera();
       debugPrint(result!.code);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => qrResult(
-            qrData: result!.code,
-          ),
-        ),
-      );
       controller!.dispose();
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => qrResult(
+                qrData: result!.code,
+              ),
+            ),
+          );
+        },
+      );
     }
   }
 

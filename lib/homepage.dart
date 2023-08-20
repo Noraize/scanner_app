@@ -5,7 +5,6 @@ import 'package:scanner_app/google_adsense.dart';
 import 'package:scanner_app/scanner.dart';
 
 bool isAdLoaded = false;
-String data = "";
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -50,7 +49,7 @@ class _homepageState extends State<homepage> {
                   ),
                 ),
                 onPressed: () async {
-                  data = await Navigator.push(
+                  await Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const ScanQrPage(),
