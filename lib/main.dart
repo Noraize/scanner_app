@@ -19,18 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      onUnknownRoute: (RouteSettings settings) {
-        return MaterialPageRoute<void>(
-          settings: settings,
-          builder: (BuildContext context) => loginscreen(),
-        );
-      },
-      initialRoute: '/',
-      routes: {
-        "/loginscreen": (context) {
-          return loginscreen();
-        }
-      },
       home: Splash(),
       debugShowCheckedModeBanner: false,
     );

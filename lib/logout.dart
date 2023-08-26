@@ -7,6 +7,7 @@ class Logout {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
     print("Logout called");
-    Navigator.of(context).pushReplacementNamed('/loginscreen');
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => loginscreen()));
   }
 }
