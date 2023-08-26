@@ -85,7 +85,7 @@ class _qrResultState extends State<qrResult>
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (val == 200) ...[
+                  if (snapshot.data == 200) ...[
                     Column(
                       children: [
                         AnimatedCheck(
@@ -106,7 +106,7 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
-                  ] else if (val == 404) ...[
+                  ] else if (snapshot.data == 404) ...[
                     Column(
                       children: [
                         Text(
@@ -136,7 +136,7 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
-                  ] else if (val == 401) ...[
+                  ] else if (snapshot.data == 401) ...[
                     AlertDialog(
                       title: Text(
                         "${snapshot.data} User. Log in again",
