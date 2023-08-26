@@ -48,7 +48,7 @@ class _qrResultState extends State<qrResult>
   @override
   Widget build(BuildContext context) {
     var check = checkin(uuidextract());
-    Future<int> val = check2(check);
+    var val = check2(check);
     return MaterialApp(
       home: Scaffold(
         appBar: NewAppBar([
