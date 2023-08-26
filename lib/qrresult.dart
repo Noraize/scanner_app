@@ -67,52 +67,95 @@ class _qrResultState extends State<qrResult>
             ),
           )
         ]),
-        body: Column(
-          children: [
-            LinearPercentIndicator(
-              animation: true,
-              progressColor: const Color(0xfffd7e14),
-              backgroundColor: const Color.fromARGB(90, 253, 125, 20),
-              percent: 1,
-              animationDuration: 6000,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-            ),
-            FutureBuilder(
-              future: val,
-              builder: (context, snapshot) => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (val == 200) ...[
-                      Column(
-                        children: [
-                          AnimatedCheck(
-                            progress: _animation,
-                            size: 200,
+        body: FutureBuilder(
+          future: val,
+          builder: (context, snapshot) => Column(
+            children: [
+              LinearPercentIndicator(
+                animation: true,
+                progressColor: const Color(0xfffd7e14),
+                backgroundColor: const Color.fromARGB(90, 253, 125, 20),
+                percent: 1,
+                animationDuration: 6000,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.25,
+              ),
+              Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (val == 200) ...[
+                    Column(
+                      children: [
+                        AnimatedCheck(
+                          progress: _animation,
+                          size: 200,
+                          color: const Color(0xfffd7e14),
+                        ),
+                        Text(
+                          "${snapshot.data}",
+                          style: GoogleFonts.getFont(
+                            'Raleway',
+                            textStyle:
+                                Theme.of(context).textTheme.displayMedium,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
                             color: const Color(0xfffd7e14),
                           ),
-                          Text(
-                            "${snapshot.data}",
-                            style: GoogleFonts.getFont(
-                              'Raleway',
-                              textStyle:
-                                  Theme.of(context).textTheme.displayMedium,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xfffd7e14),
-                            ),
+                        ),
+                      ],
+                    ),
+                  ] else if (val == 404) ...[
+                    Column(
+                      children: [
+                        Text(
+                          "${snapshot.data}",
+                          style: GoogleFonts.getFont(
+                            'Raleway',
+                            textStyle:
+                                Theme.of(context).textTheme.displayMedium,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xfffd7e14),
                           ),
-                        ],
-                      ),
-                    ] else if (val == 404) ...[
-                      FutureBuilder(
-                        future: val,
-                        builder: (context, snapshot) => Column(
+                        ),
+                        Stack(
                           children: [
-                            Text(
-                              "${snapshot.data}",
+                            AnimatedCross(
+                              progress: _animation,
+                              size: 200,
+                              color: const Color.fromARGB(255, 255, 0, 0),
+                            ),
+                            Image.asset(
+                              'qrcode.png',
+                              width: 200,
+                              height: 200,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ] else if (val == 401) ...[
+                    AlertDialog(
+                      title: Text(
+                        "${snapshot.data} User. Log in again",
+                        style: GoogleFonts.getFont(
+                          'Raleway',
+                          textStyle: Theme.of(context).textTheme.displayMedium,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xfffd7e14),
+                        ),
+                      ),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              final a = Logout();
+                              a.logout(context);
+                            },
+                            child: Text(
+                              "OK",
                               style: GoogleFonts.getFont(
                                 'Raleway',
                                 textStyle:
@@ -121,100 +164,35 @@ class _qrResultState extends State<qrResult>
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xfffd7e14),
                               ),
-                            ),
-                            Stack(
-                              children: [
-                                AnimatedCross(
-                                  progress: _animation,
-                                  size: 200,
-                                  color: const Color.fromARGB(255, 255, 0, 0),
-                                ),
-                                Image.asset(
-                                  'qrcode.png',
-                                  width: 200,
-                                  height: 200,
-                                )
-                              ],
-                            ),
-                          ],
+                            ))
+                      ],
+                    ),
+                  ] else ...[
+                    Column(
+                      children: [
+                        AnimatedCross(
+                          progress: _animation,
+                          size: 200,
+                          color: const Color.fromARGB(255, 255, 0, 0),
                         ),
-                      )
-                    ] else if (val == 401) ...[
-                      FutureBuilder(
-                        future: val,
-                        builder: (context, snapshot) => AlertDialog(
-                          title: Text(
-                            "${snapshot.data} User. Log in again",
-                            style: GoogleFonts.getFont(
-                              'Raleway',
-                              textStyle:
-                                  Theme.of(context).textTheme.displayMedium,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xfffd7e14),
-                            ),
+                        Text(
+                          "${snapshot.data}",
+                          style: GoogleFonts.getFont(
+                            'Raleway',
+                            textStyle:
+                                Theme.of(context).textTheme.displayMedium,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 255, 0, 0),
                           ),
-                          actions: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  final a = Logout();
-                                  a.logout(context);
-                                },
-                                child: Text(
-                                  "OK",
-                                  style: GoogleFonts.getFont(
-                                    'Raleway',
-                                    textStyle: Theme.of(context)
-                                        .textTheme
-                                        .displayMedium,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: const Color(0xfffd7e14),
-                                  ),
-                                ))
-                          ],
                         ),
-                      )
-                    ] else ...[
-                      FutureBuilder(
-                          future: val,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return CircularProgressIndicator();
-                            } else if (snapshot.hasError) {
-                              return Text("An error occurred");
-                            } else {
-                              return Column(
-                                children: [
-                                  AnimatedCross(
-                                    progress: _animation,
-                                    size: 200,
-                                    color: const Color.fromARGB(255, 255, 0, 0),
-                                  ),
-                                  Text(
-                                    "${snapshot.data}",
-                                    style: GoogleFonts.getFont(
-                                      'Raleway',
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .displayMedium,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color:
-                                          const Color.fromARGB(255, 255, 0, 0),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }
-                          }),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ],
+                      ],
+                    )
+                  ]
+                ],
+              ))
+            ],
+          ),
         ),
       ),
     );
