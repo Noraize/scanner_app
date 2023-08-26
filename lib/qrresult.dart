@@ -85,7 +85,7 @@ class _qrResultState extends State<qrResult>
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (snapshot.data == 200) ...[
+                  if (snapshot.data!.contains("check-in success")) ...[
                     Column(
                       children: [
                         AnimatedCheck(
@@ -106,7 +106,7 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
-                  ] else if (snapshot.data == 404) ...[
+                  ] else if (snapshot.data == "QR Code not exists") ...[
                     Column(
                       children: [
                         Text(
@@ -136,7 +136,7 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
-                  ] else if (snapshot.data == 401) ...[
+                  ] else if (snapshot.data == "Unauthorized") ...[
                     AlertDialog(
                       title: Text(
                         "${snapshot.data} User. Log in again",
