@@ -125,11 +125,11 @@ class _qrResultState extends State<qrResult>
                               size: 200,
                               color: const Color.fromARGB(255, 255, 0, 0),
                             ),
-                            Image.network(
-                              'https://cdn.pixabay.com/photo/2013/07/12/14/45/qr-code-148732_1280.png',
+                            Image.asset(
+                              'qrcode.png',
                               width: 200,
                               height: 200,
-                            ),
+                            )
                           ],
                         ),
                       ],
@@ -152,7 +152,7 @@ class _qrResultState extends State<qrResult>
                                   color: const Color.fromARGB(255, 255, 0, 0),
                                 ),
                                 Text(
-                                  "Failed! Response Code: ${snapshot.data}",
+                                  "${snapshot.data}",
                                   style: GoogleFonts.getFont(
                                     'Raleway',
                                     textStyle: Theme.of(context)
@@ -183,7 +183,7 @@ class _qrResultState extends State<qrResult>
     return resultString;
   }
 
-  Future<int> check2(checkin obj) async {
+  Future<String> check2(checkin obj) async {
     return (await obj.checkinF());
   }
 }
