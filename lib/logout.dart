@@ -7,7 +7,9 @@ class Logout {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
     print("Logout called");
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => loginscreen()));
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => loginscreen()),
+        ModalRoute.withName('/'));
   }
 }

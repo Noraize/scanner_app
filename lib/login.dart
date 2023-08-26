@@ -15,6 +15,7 @@ class loginscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
       home: Scaffold(
         appBar: NewAppBar([]),
         body: DecoratedBox(
