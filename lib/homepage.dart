@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:scanner_app/appbar.dart';
 import 'package:scanner_app/google_adsense.dart';
+import 'package:scanner_app/logout.dart';
 import 'package:scanner_app/scanner.dart';
 
 bool isAdLoaded = false;
@@ -29,7 +30,21 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: NewAppBar(),
+        appBar: NewAppBar([
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                final a = Logout();
+                a.logout(context);
+              },
+              child: Icon(
+                Icons.logout_outlined,
+                color: Colors.orange,
+              ),
+            ),
+          )
+        ]),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

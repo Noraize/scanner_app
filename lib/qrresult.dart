@@ -6,6 +6,7 @@ import 'package:scanner_app/checkin.dart';
 import 'package:animated_check/animated_check.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:scanner_app/logout.dart';
 import 'scanner.dart';
 
 String data = "";
@@ -50,7 +51,21 @@ class _qrResultState extends State<qrResult>
     Future<int> val = check2(check);
     return MaterialApp(
       home: Scaffold(
-        appBar: NewAppBar(),
+        appBar: NewAppBar([
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                final a = Logout();
+                a.logout(context);
+              },
+              child: Icon(
+                Icons.logout_outlined,
+                color: Colors.orange,
+              ),
+            ),
+          )
+        ]),
         body: Column(
           children: [
             LinearPercentIndicator(
@@ -76,7 +91,7 @@ class _qrResultState extends State<qrResult>
                           color: const Color(0xfffd7e14),
                         ),
                         Text(
-                          'Event Joined Successfully!',
+                          "Successful! Response Code: $val",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:
@@ -88,6 +103,36 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
+                  ] else if (val == 200) ...[
+                    Column(
+                      children: [
+                        Text(
+                          "Could not find QR Code! Response Code: $val",
+                          style: GoogleFonts.getFont(
+                            'Raleway',
+                            textStyle:
+                                Theme.of(context).textTheme.displayMedium,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xfffd7e14),
+                          ),
+                        ),
+                        Stack(
+                          children: [
+                            AnimatedCross(
+                              progress: _animation,
+                              size: 200,
+                              color: const Color.fromARGB(255, 255, 0, 0),
+                            ),
+                            Image.network(
+                              'https://cdn.pixabay.com/photo/2013/07/12/14/45/qr-code-148732_1280.png',
+                              width: 200,
+                              height: 200,
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
                   ] else ...[
                     Column(
                       children: [
@@ -97,7 +142,7 @@ class _qrResultState extends State<qrResult>
                           color: const Color.fromARGB(255, 255, 0, 0),
                         ),
                         Text(
-                          'Event Join Failure!',
+                          "Failed! Response Code: $val",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:

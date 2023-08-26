@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class NewAppBar extends AppBar {
-  NewAppBar.nav(bool check, BuildContext context, {super.key}) {
+  NewAppBar.nav(bool check, BuildContext context, this.actions, {super.key}) {
     nav(check, context);
   }
-  NewAppBar({super.key});
+  NewAppBar(this.actions, {super.key});
 
   @override
   final Widget title = const Image(
@@ -35,4 +35,7 @@ class NewAppBar extends AppBar {
       );
     }
   }
+
+  @override
+  final List<Widget> actions;
 }

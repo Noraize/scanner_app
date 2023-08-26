@@ -16,7 +16,7 @@ class loginscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: NewAppBar(),
+        appBar: NewAppBar([]),
         body: DecoratedBox(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
