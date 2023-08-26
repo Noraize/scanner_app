@@ -160,7 +160,18 @@ class _qrResultState extends State<qrResult>
                                   final a = Logout();
                                   a.logout(context);
                                 },
-                                child: Text("OK"))
+                                child: Text(
+                                  "OK",
+                                  style: GoogleFonts.getFont(
+                                    'Raleway',
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xfffd7e14),
+                                  ),
+                                ))
                           ],
                         ),
                       )
