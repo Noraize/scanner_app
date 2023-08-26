@@ -79,96 +79,103 @@ class _qrResultState extends State<qrResult>
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (val == 200) ...[
-                    Column(
-                      children: [
-                        AnimatedCheck(
-                          progress: _animation,
-                          size: 200,
-                          color: const Color(0xfffd7e14),
-                        ),
-                        Text(
-                          "Successful! Response Code: 200",
-                          style: GoogleFonts.getFont(
-                            'Raleway',
-                            textStyle:
-                                Theme.of(context).textTheme.displayMedium,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
+            FutureBuilder(
+              future: val,
+              builder: (context, snapshot) => Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (val == 200) ...[
+                      Column(
+                        children: [
+                          AnimatedCheck(
+                            progress: _animation,
+                            size: 200,
                             color: const Color(0xfffd7e14),
                           ),
-                        ),
-                      ],
-                    ),
-                  ] else if (val == 404) ...[
-                    Column(
-                      children: [
-                        Text(
-                          "Could not find QR Code! Response Code: 404",
-                          style: GoogleFonts.getFont(
-                            'Raleway',
-                            textStyle:
-                                Theme.of(context).textTheme.displayMedium,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xfffd7e14),
-                          ),
-                        ),
-                        Stack(
-                          children: [
-                            AnimatedCross(
-                              progress: _animation,
-                              size: 200,
-                              color: const Color.fromARGB(255, 255, 0, 0),
+                          Text(
+                            "${snapshot.data}",
+                            style: GoogleFonts.getFont(
+                              'Raleway',
+                              textStyle:
+                                  Theme.of(context).textTheme.displayMedium,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xfffd7e14),
                             ),
-                            Image.asset(
-                              'qrcode.png',
-                              width: 200,
-                              height: 200,
-                            )
-                          ],
-                        ),
-                      ],
-                    )
-                  ] else ...[
-                    FutureBuilder(
+                          ),
+                        ],
+                      ),
+                    ] else if (val == 404) ...[
+                      FutureBuilder(
                         future: val,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return CircularProgressIndicator();
-                          } else if (snapshot.hasError) {
-                            return Text("An error occurred");
-                          } else {
-                            return Column(
+                        builder: (context, snapshot) => Column(
+                          children: [
+                            Text(
+                              "${snapshot.data}",
+                              style: GoogleFonts.getFont(
+                                'Raleway',
+                                textStyle:
+                                    Theme.of(context).textTheme.displayMedium,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: const Color(0xfffd7e14),
+                              ),
+                            ),
+                            Stack(
                               children: [
                                 AnimatedCross(
                                   progress: _animation,
                                   size: 200,
                                   color: const Color.fromARGB(255, 255, 0, 0),
                                 ),
-                                Text(
-                                  "${snapshot.data}",
-                                  style: GoogleFonts.getFont(
-                                    'Raleway',
-                                    textStyle: Theme.of(context)
-                                        .textTheme
-                                        .displayMedium,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
+                                Image.asset(
+                                  'qrcode.png',
+                                  width: 200,
+                                  height: 200,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ] else ...[
+                      FutureBuilder(
+                          future: val,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text("An error occurred");
+                            } else {
+                              return Column(
+                                children: [
+                                  AnimatedCross(
+                                    progress: _animation,
+                                    size: 200,
                                     color: const Color.fromARGB(255, 255, 0, 0),
                                   ),
-                                ),
-                              ],
-                            );
-                          }
-                        }),
+                                  Text(
+                                    "${snapshot.data}",
+                                    style: GoogleFonts.getFont(
+                                      'Raleway',
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .displayMedium,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          const Color.fromARGB(255, 255, 0, 0),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
+                          }),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],
