@@ -49,6 +49,8 @@ class _qrResultState extends State<qrResult>
   Widget build(BuildContext context) {
     var check = checkin(uuidextract());
     var val = check2(check);
+    int response = retrieve(val);
+
     return MaterialApp(
       home: Scaffold(
         appBar: NewAppBar([
@@ -91,7 +93,7 @@ class _qrResultState extends State<qrResult>
                           color: const Color(0xfffd7e14),
                         ),
                         Text(
-                          "Successful! Response Code: $val",
+                          "Successful! Response Code: $response",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:
@@ -107,7 +109,7 @@ class _qrResultState extends State<qrResult>
                     Column(
                       children: [
                         Text(
-                          "Could not find QR Code! Response Code: $val",
+                          "Could not find QR Code! Response Code: 200",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:
@@ -142,7 +144,7 @@ class _qrResultState extends State<qrResult>
                           color: const Color.fromARGB(255, 255, 0, 0),
                         ),
                         Text(
-                          "Failed! Response Code: $val",
+                          "Failed! Response Code: $response",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:
@@ -173,4 +175,8 @@ class _qrResultState extends State<qrResult>
   Future<int> check2(checkin obj) async {
     return await obj.checkinF();
   }
+}
+
+retrieve(val) async {
+  return await val;
 }
