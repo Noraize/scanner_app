@@ -27,14 +27,7 @@ class _qrResultState extends State<qrResult>
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 6000), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ScanQrPage(),
-        ),
-      );
-    });
+
     player.play(AssetSource("sounds/tick.mp3"));
     _animationController = AnimationController(
       vsync: this,
@@ -85,7 +78,8 @@ class _qrResultState extends State<qrResult>
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (snapshot.data!.contains("check-in success")) ...[
+                  if (snapshot.data!.contains("check-in success") &&
+                      dobaraScanKaro(context)) ...[
                     Column(
                       children: [
                         AnimatedCheck(
@@ -106,7 +100,8 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
-                  ] else if (snapshot.data == "QR Code not exists") ...[
+                  ] else if (snapshot.data == "QR Code not exists" &&
+                      dobaraScanKaro(context)) ...[
                     Column(
                       children: [
                         Text(
@@ -128,7 +123,7 @@ class _qrResultState extends State<qrResult>
                               color: const Color.fromARGB(255, 255, 0, 0),
                             ),
                             Image.asset(
-                              'qrcode.png',
+                              'img/qrcode.png',
                               width: 200,
                               height: 200,
                             )
@@ -167,7 +162,7 @@ class _qrResultState extends State<qrResult>
                             ))
                       ],
                     ),
-                  ] else ...[
+                  ] else if (dobaraScanKaro(context)) ...[
                     Column(
                       children: [
                         AnimatedCross(
@@ -211,4 +206,16 @@ class _qrResultState extends State<qrResult>
 
 retrieve(val) async {
   return await val;
+}
+
+dobaraScanKaro(context) {
+  Future.delayed(const Duration(milliseconds: 6000), () {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ScanQrPage(),
+      ),
+    );
+  });
+  return true;
 }
