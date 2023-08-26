@@ -139,6 +139,31 @@ class _qrResultState extends State<qrResult>
                           ],
                         ),
                       )
+                    ] else if (val == 401) ...[
+                      FutureBuilder(
+                        future: val,
+                        builder: (context, snapshot) => AlertDialog(
+                          title: Text(
+                            "${snapshot.data} User. Log in again",
+                            style: GoogleFonts.getFont(
+                              'Raleway',
+                              textStyle:
+                                  Theme.of(context).textTheme.displayMedium,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xfffd7e14),
+                            ),
+                          ),
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  final a = Logout();
+                                  a.logout(context);
+                                },
+                                child: Text("OK"))
+                          ],
+                        ),
+                      )
                     ] else ...[
                       FutureBuilder(
                           future: val,
