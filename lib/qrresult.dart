@@ -64,16 +64,17 @@ class _qrResultState extends State<qrResult>
           future: val,
           builder: (context, snapshot) => Column(
             children: [
-              LinearPercentIndicator(
-                animation: true,
-                progressColor: const Color(0xfffd7e14),
-                backgroundColor: const Color.fromARGB(90, 253, 125, 20),
-                percent: 1,
-                animationDuration: 6000,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.25,
-              ),
+              snapshot.connectionState == ConnectionState.waiting
+                  ? LinearPercentIndicator(
+                      animation: true,
+                      progressColor: const Color(0xfffd7e14),
+                      backgroundColor: const Color.fromARGB(90, 253, 125, 20),
+                      percent: 1,
+                      animationDuration: 6000,
+                    )
+                  : SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.25,
+                    ),
               Center(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +158,7 @@ class _qrResultState extends State<qrResult>
                                     Theme.of(context).textTheme.displayMedium,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xfffd7e14),
+                                color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ))
                       ],

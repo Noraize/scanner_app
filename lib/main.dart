@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:scanner_app/homepage.dart';
 import 'package:scanner_app/login.dart';
 import 'package:scanner_app/splashscreen.dart';
 
@@ -18,6 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute<void>(
+          settings: settings,
+          builder: (BuildContext context) => loginscreen(),
+        );
+      },
       initialRoute: '/',
       routes: {
         "/loginscreen": (context) {
