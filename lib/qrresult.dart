@@ -48,8 +48,7 @@ class _qrResultState extends State<qrResult>
   @override
   Widget build(BuildContext context) {
     var check = checkin(uuidextract());
-    var val = check2(check);
-    int response = retrieve(val);
+    var val = (check2(check));
 
     return MaterialApp(
       home: Scaffold(
@@ -93,7 +92,7 @@ class _qrResultState extends State<qrResult>
                           color: const Color(0xfffd7e14),
                         ),
                         Text(
-                          "Successful! Response Code: $response",
+                          "Successful! Response Code: 200",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:
@@ -105,11 +104,11 @@ class _qrResultState extends State<qrResult>
                         ),
                       ],
                     ),
-                  ] else if (val == 200) ...[
+                  ] else if (val == 404) ...[
                     Column(
                       children: [
                         Text(
-                          "Could not find QR Code! Response Code: 200",
+                          "Could not find QR Code! Response Code: 404",
                           style: GoogleFonts.getFont(
                             'Raleway',
                             textStyle:
@@ -136,26 +135,38 @@ class _qrResultState extends State<qrResult>
                       ],
                     )
                   ] else ...[
-                    Column(
-                      children: [
-                        AnimatedCross(
-                          progress: _animation,
-                          size: 200,
-                          color: const Color.fromARGB(255, 255, 0, 0),
-                        ),
-                        Text(
-                          "Failed! Response Code: $response",
-                          style: GoogleFonts.getFont(
-                            'Raleway',
-                            textStyle:
-                                Theme.of(context).textTheme.displayMedium,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 255, 0, 0),
-                          ),
-                        ),
-                      ],
-                    ),
+                    FutureBuilder(
+                        future: val,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text("An error occurred");
+                          } else {
+                            return Column(
+                              children: [
+                                AnimatedCross(
+                                  progress: _animation,
+                                  size: 200,
+                                  color: const Color.fromARGB(255, 255, 0, 0),
+                                ),
+                                Text(
+                                  "Failed! Response Code: ${snapshot.data}",
+                                  style: GoogleFonts.getFont(
+                                    'Raleway',
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color.fromARGB(255, 255, 0, 0),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                        }),
                   ],
                 ],
               ),
@@ -173,7 +184,7 @@ class _qrResultState extends State<qrResult>
   }
 
   Future<int> check2(checkin obj) async {
-    return await obj.checkinF();
+    return (await obj.checkinF());
   }
 }
 
