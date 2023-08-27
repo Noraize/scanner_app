@@ -109,7 +109,7 @@ class loginscreen extends StatelessWidget {
                       await auth.authenticateLogin(
                           auth.username, auth.password);
                       if (authenticateusingapi.loginsuccess) {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => homepage(),

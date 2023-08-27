@@ -30,21 +30,23 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: NewAppBar([
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                final a = Logout();
-                a.logout(context);
-              },
-              child: Icon(
-                Icons.logout_outlined,
-                color: Colors.orange,
+        appBar: NewAppBar(
+          [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  final a = Logout();
+                  a.logout(context);
+                },
+                child: const Icon(
+                  Icons.logout_outlined,
+                  color: Colors.orange,
+                ),
               ),
-            ),
-          )
-        ]),
+            )
+          ],
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +66,7 @@ class _homepageState extends State<homepage> {
                   ),
                 ),
                 onPressed: () async {
-                  await Navigator.push(
+                  await Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const ScanQrPage(),

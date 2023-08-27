@@ -34,7 +34,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
       controller!.dispose();
       WidgetsBinding.instance.addPostFrameCallback(
         (_) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => qrResult(

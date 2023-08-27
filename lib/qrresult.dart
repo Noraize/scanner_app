@@ -53,7 +53,7 @@ class _qrResultState extends State<qrResult>
                 final a = Logout();
                 a.logout(context);
               },
-              child: Icon(
+              child: const Icon(
                 Icons.logout_outlined,
                 color: Colors.orange,
               ),
@@ -64,129 +64,177 @@ class _qrResultState extends State<qrResult>
           future: val,
           builder: (context, snapshot) => Column(
             children: [
+              LinearPercentIndicator(
+                animation: true,
+                progressColor: const Color(0xfffd7e14),
+                backgroundColor: const Color.fromARGB(90, 253, 125, 20),
+                percent: 1,
+                animationDuration: 6000,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.25,
+              ),
               snapshot.connectionState == ConnectionState.waiting
-                  ? LinearPercentIndicator(
-                      animation: true,
-                      progressColor: const Color(0xfffd7e14),
-                      backgroundColor: const Color.fromARGB(90, 253, 125, 20),
-                      percent: 1,
-                      animationDuration: 6000,
-                    )
-                  : SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.25,
-                    ),
-              Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (snapshot.data!.contains("check-in success") &&
-                      dobaraScanKaro(context)) ...[
-                    Column(
+                  ? Column(
                       children: [
-                        AnimatedCheck(
-                          progress: _animation,
-                          size: 200,
-                          color: const Color(0xfffd7e14),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .15,
                         ),
-                        Text(
-                          "${snapshot.data}",
-                          style: GoogleFonts.getFont(
-                            'Raleway',
-                            textStyle:
-                                Theme.of(context).textTheme.displayMedium,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xfffd7e14),
+                        const Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xfffd7e14),
                           ),
                         ),
                       ],
-                    ),
-                  ] else if (snapshot.data == "QR Code not exists" &&
-                      dobaraScanKaro(context)) ...[
-                    Column(
-                      children: [
-                        Text(
-                          "${snapshot.data}",
-                          style: GoogleFonts.getFont(
-                            'Raleway',
-                            textStyle:
-                                Theme.of(context).textTheme.displayMedium,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xfffd7e14),
-                          ),
-                        ),
-                        Stack(
-                          children: [
-                            AnimatedCross(
-                              progress: _animation,
-                              size: 200,
-                              color: const Color.fromARGB(255, 255, 0, 0),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (snapshot.connectionState !=
+                                  ConnectionState.waiting &&
+                              snapshot.data!.contains("check-in success") &&
+                              snapshot.data != null &&
+                              dobaraScanKaro(context)) ...[
+                            Column(
+                              children: [
+                                AnimatedCheck(
+                                  progress: _animation,
+                                  size: 200,
+                                  color: const Color(0xfffd7e14),
+                                ),
+                                Text(
+                                  snapshot.data == null
+                                      ? ""
+                                      : "${snapshot.data}",
+                                  style: GoogleFonts.getFont(
+                                    'Raleway',
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xfffd7e14),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Image.asset(
-                              'img/qrcode.png',
-                              width: 200,
-                              height: 200,
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ] else if (snapshot.data == "Unauthorized") ...[
-                    AlertDialog(
-                      title: Text(
-                        "${snapshot.data} User. Log in again",
-                        style: GoogleFonts.getFont(
-                          'Raleway',
-                          textStyle: Theme.of(context).textTheme.displayMedium,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xfffd7e14),
-                        ),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () {
-                              final a = Logout();
-                              a.logout(context);
-                            },
-                            child: Text(
-                              "OK",
-                              style: GoogleFonts.getFont(
-                                'Raleway',
-                                textStyle:
-                                    Theme.of(context).textTheme.displayMedium,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 255, 255, 255),
+                          ] else if (snapshot.connectionState !=
+                                  ConnectionState.waiting &&
+                              snapshot.data != null &&
+                              snapshot.data == "QR Code not exists" &&
+                              dobaraScanKaro(context)) ...[
+                            Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(50.0),
+                                        child: Image.asset(
+                                          'assets/img/qrcode.png',
+                                          width: 100,
+                                          height: 100,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: AnimatedCross(
+                                        progress: _animation,
+                                        size: 200,
+                                        color: const Color.fromARGB(
+                                            255, 255, 0, 0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  snapshot.data == null
+                                      ? ""
+                                      : "${snapshot.data}",
+                                  style: GoogleFonts.getFont(
+                                    'Raleway',
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xfffd7e14),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ] else if (snapshot.connectionState !=
+                                  ConnectionState.waiting &&
+                              snapshot.data != null &&
+                              snapshot.data == "Unauthorized") ...[
+                            AlertDialog(
+                              title: Text(
+                                snapshot.data == null
+                                    ? ""
+                                    : "${snapshot.data} User. Login Again",
+                                style: GoogleFonts.getFont(
+                                  'Raleway',
+                                  textStyle:
+                                      Theme.of(context).textTheme.displayMedium,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color(0xfffd7e14),
+                                ),
                               ),
-                            ))
-                      ],
-                    ),
-                  ] else if (dobaraScanKaro(context)) ...[
-                    Column(
-                      children: [
-                        AnimatedCross(
-                          progress: _animation,
-                          size: 200,
-                          color: const Color.fromARGB(255, 255, 0, 0),
-                        ),
-                        Text(
-                          "${snapshot.data}",
-                          style: GoogleFonts.getFont(
-                            'Raleway',
-                            textStyle:
-                                Theme.of(context).textTheme.displayMedium,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 255, 0, 0),
-                          ),
-                        ),
-                      ],
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    final a = Logout();
+                                    a.logout(context);
+                                  },
+                                  child: Text(
+                                    "OK",
+                                    style: GoogleFonts.getFont(
+                                      'Raleway',
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .displayMedium,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color.fromARGB(
+                                          255, 255, 255, 255),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ] else if (snapshot.connectionState !=
+                                  ConnectionState.waiting &&
+                              snapshot.data != null &&
+                              dobaraScanKaro(context)) ...[
+                            Column(
+                              children: [
+                                AnimatedCross(
+                                  progress: _animation,
+                                  size: 200,
+                                  color: const Color.fromARGB(255, 255, 0, 0),
+                                ),
+                                Text(
+                                  snapshot.data == null
+                                      ? ""
+                                      : "${snapshot.data}",
+                                  style: GoogleFonts.getFont(
+                                    'Raleway',
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color.fromARGB(255, 255, 0, 0),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ]
+                        ],
+                      ),
                     )
-                  ]
-                ],
-              ))
             ],
           ),
         ),
@@ -210,13 +258,16 @@ retrieve(val) async {
 }
 
 dobaraScanKaro(context) {
-  Future.delayed(const Duration(milliseconds: 6000), () {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ScanQrPage(),
-      ),
-    );
-  });
+  Future.delayed(
+    const Duration(milliseconds: 6000),
+    () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ScanQrPage(),
+        ),
+      );
+    },
+  );
   return true;
 }
