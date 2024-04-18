@@ -1,6 +1,3 @@
-Sure! Here's the final README file incorporating all the sections:
-
----
 
 # Festifyer Mobile App
 
