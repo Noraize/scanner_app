@@ -5,7 +5,7 @@
 The Festifyer Mobile App is a cross-platform mobile application developed using Flutter. It provides users with features for event check-in using QR codes, user authentication, and navigation functionalities. The app also integrates Google Mobile Ads for displaying advertisements to users.
 
 ## Screenshots
-Insert screenshots of the project to showcase its appearance and functionality. Placeholders have been added below for the screenshots.
+
 
 ### Splash Page
 
